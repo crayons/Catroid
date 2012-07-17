@@ -26,9 +26,12 @@ import java.io.File;
 import java.util.ArrayList;
 
 import android.test.ActivityInstrumentationTestCase2;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import at.tugraz.ist.catroid.ProjectManager;
 import at.tugraz.ist.catroid.R;
 import at.tugraz.ist.catroid.common.Constants;
 import at.tugraz.ist.catroid.content.Project;
@@ -283,6 +286,34 @@ public class MainMenuActivityTest extends ActivityInstrumentationTestCase2<MainM
 				.getText().toString());
 		assertEquals("Link text is not correct!", getActivity().getString(R.string.about_link_text), textViewList
 				.get(2).getText().toString());
+	}
+
+	public void testPlayButtonFastClick() {
+		createTestProject(getActivity().getString(R.string.default_project_name));
+
+		TextView startTextView = solo.getText(getActivity().getString(R.string.start));
+		//LinearLayout playButton = (LinearLayout) solo.getView(R.id.btn_action_play);
+		final LinearLayout playButton = (LinearLayout) getActivity().findViewById(R.id.btn_action_play);
+		getActivity().runOnUiThread(new Runnable() {
+
+			public void run() {
+				playButton.requestFocus();
+
+				playButton.performClick();
+				playButton.performClick();
+			}
+		});
+
+		solo.goBack();
+		solo.sleep(2000);
+		solo.goBack();
+		solo.goBack();
+		solo.goBack();
+
+		solo.clickOnText(ProjectManager.getInstance().getCurrentProject().getName());
+		ArrayList<View> viewlist = solo.getViews();
+
+		solo.assertCurrentActivity("Should be on MainMenu activity", MainMenuActivity.class);
 	}
 
 	public void testPlayButton() {
