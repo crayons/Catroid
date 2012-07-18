@@ -305,9 +305,7 @@ public class MainMenuActivityTest extends ActivityInstrumentationTestCase2<MainM
 		});
 
 		solo.goBack();
-		solo.sleep(2000);
-		solo.goBack();
-		solo.goBack();
+		solo.sleep(200);
 		solo.goBack();
 
 		solo.clickOnText(ProjectManager.getInstance().getCurrentProject().getName());

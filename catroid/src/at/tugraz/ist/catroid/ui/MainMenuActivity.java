@@ -33,6 +33,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 import at.tugraz.ist.catroid.ProjectManager;
@@ -109,6 +110,8 @@ public class MainMenuActivity extends Activity {
 				new View.OnClickListener() {
 					public void onClick(View v) {
 						if (projectManager.getCurrentProject() != null) {
+							ViewGroup actionBar = activityHelper.getActionBar();
+							int childCount = actionBar.getChildCount();
 							Intent intent = new Intent(MainMenuActivity.this, PreStageActivity.class);
 							ignoreResume = true;
 							startActivityForResult(intent, PreStageActivity.REQUEST_RESOURCES_INIT);
@@ -169,8 +172,8 @@ public class MainMenuActivity extends Activity {
 				EditText projectDescriptionField = (EditText) dialog.findViewById(R.id.project_description_upload);
 				EditText projectUploadName = (EditText) dialog.findViewById(R.id.project_upload_name);
 				TextView sizeOfProject = (TextView) dialog.findViewById(R.id.dialog_upload_size_of_project);
-				sizeOfProject.setText(UtilFile
-						.getSizeAsString(new File(Constants.DEFAULT_ROOT + "/" + currentProjectName)));
+				sizeOfProject.setText(UtilFile.getSizeAsString(new File(Constants.DEFAULT_ROOT + "/"
+						+ currentProjectName)));
 
 				projectRename.setVisibility(View.GONE);
 				projectUploadName.setText(ProjectManager.getInstance().getCurrentProject().getName());
