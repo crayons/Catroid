@@ -33,7 +33,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 import at.tugraz.ist.catroid.ProjectManager;
@@ -110,8 +109,9 @@ public class MainMenuActivity extends Activity {
 				new View.OnClickListener() {
 					public void onClick(View v) {
 						if (projectManager.getCurrentProject() != null) {
-							ViewGroup actionBar = activityHelper.getActionBar();
-							int childCount = actionBar.getChildCount();
+							//Utils.disableView(activityHelper.getActionBar().getChildAt(5));
+							Utils.disableView(activityHelper.getActionBar().getChildAt(
+									activityHelper.getActionBar().getChildCount() - 1));
 							Intent intent = new Intent(MainMenuActivity.this, PreStageActivity.class);
 							ignoreResume = true;
 							startActivityForResult(intent, PreStageActivity.REQUEST_RESOURCES_INIT);
@@ -207,6 +207,9 @@ public class MainMenuActivity extends Activity {
 		projectManager.loadProject(projectManager.getCurrentProject().getName(), this, false);
 		writeProjectTitleInTextfield();
 
+		//Utils.enableView(activityHelper.getActionBar().getChildAt(5));
+		Utils.enableView(activityHelper.getActionBar().getChildAt(activityHelper.getActionBar().getChildCount() - 1));
+
 	}
 
 	public void writeProjectTitleInTextfield() {
@@ -234,6 +237,8 @@ public class MainMenuActivity extends Activity {
 			projectManager.saveProject();
 			Utils.saveToPreferences(this, Constants.PREF_PROJECTNAME_KEY, projectManager.getCurrentProject().getName());
 		}
+		//Utils.disableView(activityHelper.getActionBar().getChildAt(5));
+		Utils.disableView(activityHelper.getActionBar().getChildAt(activityHelper.getActionBar().getChildCount() - 1));
 	}
 
 	public void handleCurrentProjectButton(View v) {

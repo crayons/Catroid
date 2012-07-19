@@ -368,6 +368,14 @@ public class Utils {
 		return loadableProject;
 	}
 
+	public static void disableView(View view) {
+		view.setEnabled(false);
+	}
+
+	public static void enableView(View view) {
+		view.setEnabled(true);
+	}
+
 	private static String searchForNonExistingSoundTitle(String title, int nextNumber) {
 		// search for sounds with the same title
 		String newTitle;

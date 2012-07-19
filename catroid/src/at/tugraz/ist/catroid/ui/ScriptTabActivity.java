@@ -34,7 +34,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TabHost;
@@ -146,8 +145,9 @@ public class ScriptTabActivity extends TabActivity implements OnDismissListener,
 		activityHelper.addActionButton(R.id.btn_action_play, R.drawable.ic_play_black, R.string.start,
 				new View.OnClickListener() {
 					public void onClick(View v) {
-						ViewGroup actionBar = activityHelper.getActionBar();
-						int childCount = actionBar.getChildCount();
+						//Utils.disableView(activityHelper.getActionBar().getChildAt(7));
+						Utils.disableView(activityHelper.getActionBar().getChildAt(
+								activityHelper.getActionBar().getChildCount() - 1));
 						Intent intent = new Intent(ScriptTabActivity.this, PreStageActivity.class);
 						startActivityForResult(intent, PreStageActivity.REQUEST_RESOURCES_INIT);
 
@@ -241,6 +241,21 @@ public class ScriptTabActivity extends TabActivity implements OnDismissListener,
 				costumeTitleInput.setText(selectedCostumeData.getCostumeName());
 				break;
 		}
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		//Utils.enableView(activityHelper.getActionBar().getChildAt(7));
+		Utils.enableView(activityHelper.getActionBar().getChildAt(activityHelper.getActionBar().getChildCount() - 1));
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		//Utils.enableView(activityHelper.getActionBar().getChildAt(7));
+		Utils.disableView(activityHelper.getActionBar().getChildAt(activityHelper.getActionBar().getChildCount() - 1));
+
 	}
 
 	public void handlePositiveButtonRenameSound(View v) {

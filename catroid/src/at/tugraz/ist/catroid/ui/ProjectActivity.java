@@ -30,6 +30,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.EditText;
@@ -152,6 +153,10 @@ public class ProjectActivity extends ListActivity {
 		activityHelper.addActionButton(R.id.btn_action_play, R.drawable.ic_play_black, R.string.start,
 				new View.OnClickListener() {
 					public void onClick(View v) {
+						ViewGroup actionBar = activityHelper.getActionBar();
+						//Utils.disableView(activityHelper.getActionBar().getChildAt(7));
+						Utils.disableView(activityHelper.getActionBar().getChildAt(
+								activityHelper.getActionBar().getChildCount() - 1));
 						Intent intent = new Intent(ProjectActivity.this, PreStageActivity.class);
 						startActivityForResult(intent, PreStageActivity.REQUEST_RESOURCES_INIT);
 					}
@@ -223,6 +228,7 @@ public class ProjectActivity extends ListActivity {
 			return;
 		}
 		spriteAdapter.notifyDataSetChanged();
+		Utils.enableView(activityHelper.getActionBar().getChildAt(activityHelper.getActionBar().getChildCount() - 1));
 	}
 
 	@Override
@@ -244,6 +250,7 @@ public class ProjectActivity extends ListActivity {
 		if (projectManager.getCurrentProject() != null) {
 			projectManager.saveProject();
 		}
+		Utils.disableView(activityHelper.getActionBar().getChildAt(activityHelper.getActionBar().getChildCount() - 1));
 	}
 
 	public void handleProjectActivityItemLongClick(View view) {
