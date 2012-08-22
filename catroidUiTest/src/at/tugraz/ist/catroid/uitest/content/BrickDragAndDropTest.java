@@ -106,10 +106,12 @@ public class BrickDragAndDropTest extends ActivityInstrumentationTestCase2<MainM
 				brickListToCheck.get(1) instanceof StopAllSoundsBrick);
 
 		UiTestUtils.addNewBrick(solo, R.string.brick_broadcast);
+		solo.sleep(200);
 		solo.clickOnScreen(200, 200);
-
+		solo.sleep(200);
 		yPositionList = UiTestUtils.getListItemYPositions(solo);
 		solo.clickOnScreen(20, yPositionList.get(1));
+		solo.sleep(200);
 		solo.clickOnText(solo.getString(R.string.brick_context_dialog_move_brick));
 
 		Display display = solo.getCurrentActivity().getWindowManager().getDefaultDisplay();
