@@ -116,6 +116,7 @@ public class BrickDragAndDropTest extends ActivityInstrumentationTestCase2<MainM
 		}
 		solo.clickOnScreen(10, yPositionList.get(1));
 		solo.sleep(200);
+		solo.waitForText(solo.getString(R.string.brick_context_dialog_move_brick));
 		solo.clickOnText(solo.getString(R.string.brick_context_dialog_move_brick));
 
 		Display display = solo.getCurrentActivity().getWindowManager().getDefaultDisplay();
