@@ -114,7 +114,7 @@ public class BrickDragAndDropTest extends ActivityInstrumentationTestCase2<MainM
 		for (Integer brickYPosition : yPositionList) {
 			Log.v("yPosition list", "value: " + brickYPosition);
 		}
-		solo.clickOnScreen(20, yPositionList.get(1));
+		solo.clickOnScreen(10, yPositionList.get(1));
 		solo.sleep(200);
 		solo.clickOnText(solo.getString(R.string.brick_context_dialog_move_brick));
 
