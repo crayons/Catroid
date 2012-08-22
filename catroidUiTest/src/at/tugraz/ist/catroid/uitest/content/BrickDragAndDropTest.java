@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.test.ActivityInstrumentationTestCase2;
+import android.util.Log;
 import android.view.Display;
 import android.widget.ListView;
 import at.tugraz.ist.catroid.ProjectManager;
@@ -110,6 +111,9 @@ public class BrickDragAndDropTest extends ActivityInstrumentationTestCase2<MainM
 		solo.clickOnScreen(200, 200);
 		solo.sleep(200);
 		yPositionList = UiTestUtils.getListItemYPositions(solo);
+		for (Integer brickYPosition : yPositionList) {
+			Log.v("yPosition list", "value: " + brickYPosition);
+		}
 		solo.clickOnScreen(20, yPositionList.get(1));
 		solo.sleep(200);
 		solo.clickOnText(solo.getString(R.string.brick_context_dialog_move_brick));
