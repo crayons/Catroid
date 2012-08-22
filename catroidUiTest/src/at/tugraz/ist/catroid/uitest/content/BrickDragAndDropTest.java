@@ -116,8 +116,7 @@ public class BrickDragAndDropTest extends ActivityInstrumentationTestCase2<MainM
 		}
 		solo.clickOnScreen(10, yPositionList.get(1));
 		solo.sleep(200);
-		solo.waitForText(solo.getString(R.string.brick_context_dialog_move_brick));
-		solo.clickOnText(solo.getString(R.string.brick_context_dialog_move_brick));
+		clickOnMoveInDialog();
 
 		Display display = solo.getCurrentActivity().getWindowManager().getDefaultDisplay();
 
@@ -144,5 +143,15 @@ public class BrickDragAndDropTest extends ActivityInstrumentationTestCase2<MainM
 
 		BrickAdapter adapter = (BrickAdapter) solo.getCurrentListViews().get(0).getAdapter();
 		assertEquals("Brick was not added.", 2 + 1, adapter.getCount()); // don't forget the footer
+	}
+
+	private void clickOnMoveInDialog() {
+		if (!solo.waitForText(solo.getString(R.string.brick_context_dialog_move_brick), 0, 5000)) {
+			fail("Text not shown in 5 secs!");
+		}
+		solo.clickOnText(solo.getString(R.string.brick_context_dialog_move_brick));
+		if (!solo.waitForView(ListView.class, 0, 5000)) {
+			fail("Dialog does not close in 5 sec!");
+		}
 	}
 }
