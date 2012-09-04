@@ -49,9 +49,9 @@ public class XMLStringToInternGenerator {
 	private static InternToken getNextToken(String stringInternFormulaRepresentation) {
 
 		int internTokenTypeNameEndIndex = stringInternFormulaRepresentation.indexOf(":", 1);
-		String internTokenTypeName = stringInternFormulaRepresentation.substring(0, internTokenTypeNameEndIndex);
+		String internalTokenTypeName = stringInternFormulaRepresentation.substring(0, internTokenTypeNameEndIndex);
 
-		InternTokenType internTokenType = InternTokenType.getInternTokenTypeByString(internTokenTypeName);
+		InternTokenType internTokenType = InternTokenType.getInternTokenTypeByString(internalTokenTypeName);
 
 		return null;
 	}
