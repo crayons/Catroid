@@ -25,7 +25,6 @@ package at.tugraz.ist.catroid.content.bricks;
 import java.util.List;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.widget.BaseAdapter;
 import at.tugraz.ist.catroid.ProjectManager;
@@ -124,13 +123,6 @@ public class ComeToFrontBrick implements Brick {
 		}
 
 		sprite.getWallpaperCostume().setzPosition(sprites.size() - 1);
-
-		for (Sprite sprite : sprites) {
-			wallpaperCostume = sprite.getWallpaperCostume();
-			if (wallpaperCostume != null) {
-				Log.v("DEPTH", String.valueOf(wallpaperCostume.getzPosition()));
-			}
-		}
 
 	}
 }
