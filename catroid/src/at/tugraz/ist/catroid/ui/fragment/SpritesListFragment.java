@@ -122,7 +122,6 @@ public class SpritesListFragment extends SherlockListFragment implements OnClick
 	@Override
 	public void onStart() {
 		super.onStart();
-		initListeners();
 	}
 
 	@Override
@@ -154,6 +153,7 @@ public class SpritesListFragment extends SherlockListFragment implements OnClick
 		getActivity().registerReceiver(spritesListInitReceiver, intentFilterSpriteListInit);
 
 		spriteAdapter.notifyDataSetChanged();
+		initListeners();
 	}
 
 	@Override
