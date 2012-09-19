@@ -122,6 +122,14 @@ public class SpritesListFragment extends SherlockListFragment implements OnClick
 	@Override
 	public void onStart() {
 		super.onStart();
+		spriteList = (ArrayList<Sprite>) ProjectManager.getInstance().getCurrentProject().getSpriteList();
+		spriteAdapter = new SpriteAdapter(getActivity(), R.layout.activity_project_spritelist_item, R.id.sprite_title,
+				spriteList);
+
+		setListAdapter(spriteAdapter);
+		getListView().setTextFilterEnabled(true);
+		getListView().setDivider(null);
+		getListView().setDividerHeight(0);
 	}
 
 	@Override
@@ -200,15 +208,6 @@ public class SpritesListFragment extends SherlockListFragment implements OnClick
 	}
 
 	private void initListeners() {
-		spriteList = (ArrayList<Sprite>) ProjectManager.getInstance().getCurrentProject().getSpriteList();
-		spriteAdapter = new SpriteAdapter(getActivity(), R.layout.activity_project_spritelist_item, R.id.sprite_title,
-				spriteList);
-
-		setListAdapter(spriteAdapter);
-		getListView().setTextFilterEnabled(true);
-		getListView().setDivider(null);
-		getListView().setDividerHeight(0);
-
 		getListView().setOnItemClickListener(new ListView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
